@@ -1,9 +1,11 @@
 // src/lib.rs
 
-pub mod proofs;      // Module for zero-knowledge proofs
+mod proof;       // Module for zero-knowledge proofs
 pub mod transaction; // Module for Coinjoin transaction logic
-pub mod utils;       // Module for utility functions
+pub mod utils;
+mod proof;       // Module for utility functions
 
+use crate::proof::{generate_proof, verify_proof, ZKProof};
 use transaction::CoinjoinTransaction;
 use proofs::{generate_proof, verify_proof, ZKProof};
 
@@ -20,6 +22,7 @@ pub fn create_coinjoin_transaction(/* parameters */) -> Result<(CoinjoinTransact
 }
 
 // Public function to verify a Coinjoin transaction's proof
+use bellman::groth16::prepare_verifying_key;
 pub fn verify_coinjoin_transaction(proof: &ZKProof) -> Result<bool, String> {
     let vk = prepare_verifying_key(); // You should implement this function to get the verifying key
 
