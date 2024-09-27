@@ -1,7 +1,8 @@
 // src/lib.rs
 
-mod proof;       // Module for zero-knowledge proofspub mod transaction; // Module for Coinjoin transaction logic
-pub mod utils;
+pub mod proof; // Module for zero-knowledge proofspub mod transaction; 
+pub mod utils; // Module for Coinjoin transaction logic
+
 
 use crate::proof::{generate_proof, verify_proof, ZKProof};
 use transaction::CoinjoinTransaction;
