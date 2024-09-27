@@ -29,20 +29,20 @@ pub fn generate_proof<E: Engine>(
         public_inputs,
     })
 }
-pub fn verify_proof<E: Engine>(
+pub fn verify_zk_proof<E: Engine>(
     zk_proof: &ZKProof<E>,
     vk: &PreparedVerifyingKey<E>
 ) -> Result<bool, Box<dyn Error>> {
-    // Convert public inputs from Vec<Vec<u8>> to the format expected by the `bellman::verify_proof`
+    // Convert public inputs from Vec<Vec<u8>> to the format expected by the `bellman::groth16::verify_proof`
     let public_inputs: Vec<E::Fr> = zk_proof
         .public_inputs
         .iter()
         .map(|input| {
             // Convert Vec<u8> to Fr (the field element type)
-            E::Fr::from_repr(bellman::pairing::ff::PrimeFieldRepr::from(input.as_slice()))
+            E::Fr::from_repr(E::Fr::Repr::from(input.as_slice()))
         })
         .collect::<Result<Vec<_>, _>>()?;
 
     // Verify the proof
-    Ok(verify_proof(vk, &zk_proof.proof, &public_inputs)?)
+    Ok(bellman::groth16::verify_proof(vk, &zk_proof.proof, &public_inputs)?)
 }

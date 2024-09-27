@@ -7,9 +7,9 @@ pub mod utils; // Module for Coinjoin transaction logic
 use crate::proof::{generate_proof, verify_proof, ZKProof};
 
 // Public function to create a Coinjoin transaction with ZK proofs
-pub fn create_coinjoin_transaction(/* parameters */) -> Result<(CoinjoinTransaction, ZKProof), String> {
+pub fn create_coinjoin_transaction(/* parameters */) -> Result<(transaction::CoinjoinTransaction, ZKProof), String> {
     // Create the Coinjoin transaction
-    let transaction = CoinjoinTransaction::new(/* parameters */);
+    let transaction = transaction::CoinjoinTransaction::new(/* parameters */);
 
     // Generate the ZK proof
     let proof = generate_proof(/* parameters */)
