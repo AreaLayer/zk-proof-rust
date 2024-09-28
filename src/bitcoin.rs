@@ -1,5 +1,5 @@
 use bitcoin::{Network, PrivateKey, PublicKey, Script};
-use reqwest::blocking::Client;
+use reqwest::Client;
 
 fn main() {
     // Generate a new private key
@@ -17,7 +17,7 @@ pub fn get_address(privkey: &PrivateKey, network: Network) -> String {
 
 
 pub fn get_balance(address: &str) -> Result<f64, Box<dyn std::error::Error>> {
-    let client = reqwest::blocking::Client::new();
+    let client = reqwest::Client::new();
     let response = client.get(&format!("https://blockchain.info/q/addressbalance/{}", address)).send()?;
     let balance = response.text()?.parse::<f64>()?;
     Ok(balance)
