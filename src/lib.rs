@@ -24,10 +24,10 @@ pub fn create_coinjoin_transaction(/* parameters */) -> Result<(transaction::Coi
     Ok((transaction, proof?))
 }// Public function to verify a Coinjoin transaction's proof
 use bellman::groth16::prepare_verifying_key;
-pub fn verify_coinjoin_transaction(transaction: &transaction::CoinjoinTransaction, proof: &ZKProof) -> bool {
+pub fn verify_coinjoin_transaction(transaction: &transaction::CoinjoinTransaction, proof: &ZKProof<E>) -> bool {
     // Prepare the verifying key
-    let vk = prepare_verifying_key(&proof.vk);
+    let vk = prepare_verifying_key(&proof.get_vk());
     // Verify the proof
-    let result = vk.verify(&proof.inputs, &proof.proof);
+    let result = vk.verify(&proof.get_inputs(), &proof.get_proof());
     result
 }

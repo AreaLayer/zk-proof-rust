@@ -1,10 +1,9 @@
 use bellman::groth16::create_random_proof;
-use bellman::pairing::Engine;
 use rand::thread_rng;
 use std::error::Error;
 
 #[derive(Debug)]
-pub struct ZKProof<E: pairing::Engine> {
+pub struct ZKProof<E:Eq::Engine> {
     proof: bellman::groth16::Proof<E>,
     public_inputs: Vec<Vec<u8>>, // Adjust based on your needs
 }
