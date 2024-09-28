@@ -5,15 +5,14 @@ pub mod utils;
 pub mod transaction; // Module for Coinjoin transaction logic
 pub mod bitcoin;
 
-
-use std::f64::consts::E;
-
 use utils::generate_nonce;
 
-use crate::proof::{generate_proof, ZKProof};
-
+use crate::proof::ZKProof;
+use crate::proof::generate_proof;
+// Pub const for E
+pub const EULER: f64 = 2.71828;
 // Public function to create a Coinjoin transaction with ZK proofs
-pub fn create_coinjoin_transaction(/* parameters */) -> Result<(transaction::CoinjoinTransaction, ZKProof<E>), String> {
+pub fn create_coinjoin_transaction(/* parameters */) -> Result<(transaction::CoinjoinTransaction, ZKProof<String>), String> {
     // Create the Coinjoin transaction
     let transaction = transaction::CoinjoinTransaction::new(/* parameters */);
 
@@ -24,7 +23,7 @@ pub fn create_coinjoin_transaction(/* parameters */) -> Result<(transaction::Coi
     Ok((transaction, proof?))
 }// Public function to verify a Coinjoin transaction's proof
 use bellman::groth16::prepare_verifying_key;
-pub fn verify_coinjoin_transaction(transaction: &transaction::CoinjoinTransaction, proof: &ZKProof<E>) -> bool {
+pub fn verify_coinjoin_transaction(transaction: &transaction::CoinjoinTransaction, proof: &ZKProof<String>) -> bool {
     // Prepare the verifying key
     let vk = prepare_verifying_key(&proof.get_vk());
     // Verify the proof
