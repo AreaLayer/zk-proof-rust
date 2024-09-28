@@ -16,12 +16,11 @@ pub fn create_coinjoin_transaction(/* parameters */) -> Result<(transaction::Coi
     let transaction = transaction::CoinjoinTransaction::new(/* parameters */);
 
     // Generate the ZK proof
-    let proof: Vec<u8> = generate_nonce();
-    let proof: Result<ZKProof<_>, Box<dyn Error>> = generate_proof();
+    let nonce: Vec<u8> = generate_nonce();
+    let proof: Result<ZKProof<_>, Box<dyn std::error::Error>> = generate_proof();
     
-    Ok((transaction, proof))
+    Ok((transaction, proof?))
 }
-
 // Public function to verify a Coinjoin transaction's proof
 use bellman::groth16::prepare_verifying_key;
 pub fn verify_coinjoin_transaction(transaction: &transaction::CoinjoinTransaction, proof: &ZKProof<E>) -> bool {
