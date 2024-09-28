@@ -8,15 +8,18 @@ pub struct ZKProof<E: pairing::Engine> {
     proof: bellman::groth16::Proof<E>,
     public_inputs: Vec<Vec<u8>>, // Adjust based on your needs
 }
-pub fn generate_proof<E: pairing::Engine + pairing::group::ff::PrimeField>(
+pub fn generate_proof<E: pairing::Engine>(
     circuit: impl bellman::Circuit<E>,
     pk: &bellman::groth16::Parameters<E>,
-) -> Result<ZKProof<E>, Box<dyn Error>> {
+) -> Result<ZKProof<E>, Box<dyn Error>>
+where
+    E::Fr: pairing::group::ff::PrimeField + bellman::PrimeFieldBits,
+{
     // Random number generator for proof generation
     let rng = &mut thread_rng();
 
     // Generate the proof using the bellman `create_random_proof`
-    let proof = create_random_proof(circuit, &pk, rng)?;
+    let proof = create_random_proof(circuit, pk, rng)?;
 
     // Populate public_inputs based on the circuit's public inputs
     // For simplicity, assuming the circuit's public inputs are accessible
@@ -26,8 +29,9 @@ pub fn generate_proof<E: pairing::Engine + pairing::group::ff::PrimeField>(
         proof,
         public_inputs,
     })
-}use bellman::groth16::PreparedVerifyingKey;
+}
 
+use bellman::groth16::PreparedVerifyingKey;
 pub fn verify_zk_proof<E: pairing::Engine>(
     zk_proof: &ZKProof<E>,
     vk: &PreparedVerifyingKey<E>
