@@ -7,7 +7,7 @@ pub mod transaction; // Module for Coinjoin transaction logic
 
 use utils::generate_nonce;
 
-use crate::proof::{generate_proof, verify_proof, ZKProof};
+use crate::proof::{generate_proof, ZKProof};
 
 // Public function to create a Coinjoin transaction with ZK proofs
 pub fn create_coinjoin_transaction(/* parameters */) -> Result<(transaction::CoinjoinTransaction, ZKProof), String> {
