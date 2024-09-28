@@ -1,5 +1,4 @@
 use bitcoin::{Network, PrivateKey, PublicKey, Script};
-use bitcoin::secp256k1;
 
 
 fn main() {
@@ -15,7 +14,6 @@ pub fn get_address(privkey: &PrivateKey, network: Network) -> String {
     let address = script.address(network).unwrap();
     address.to_string()
 }
-use reqwest;
 
 pub fn get_balance(address: &str) -> Result<f64, Box<dyn std::error::Error>> {
     let client = reqwest::blocking::Client::new();
