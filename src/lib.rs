@@ -5,6 +5,8 @@ pub mod utils;
 pub mod transaction; // Module for Coinjoin transaction logic
 pub mod bitcoin;
 
+use bellman::groth16::prepare_verifying_key;
+use bellman::bn256::Bn256;
 use utils::generate_nonce;
 
 use crate::proof::ZKProof;
@@ -26,8 +28,7 @@ pub fn create_coinjoin_transaction(/* parameters */) -> Result<(transaction::Coi
         Err(e) => Err(e.to_string()),
     }
 }
-
-// Public function to verify a Coinjoin transaction's proofuse bellman::groth16::prepare_verifying_key;
+// Public function to verify a Coinjoin transaction's proof
 pub fn verify_coinjoin_transaction(transaction: &transaction::CoinjoinTransaction, proof: &ZKProof<String>) -> bool {
     // Prepare the verifying key
     let vk = prepare_verifying_key(&proof.get_vk());

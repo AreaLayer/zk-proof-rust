@@ -33,7 +33,7 @@ where
 }
 
 use bellman::groth16::PreparedVerifyingKey;
-pub fn verify_zk_proof<E: pairing::Engine>(
+pub fn verify_zk_proof<E: pairing::Engine + pairing::MultiMillerLoop>(
     zk_proof: &ZKProof<E>,
     vk: &PreparedVerifyingKey<E>
 ) -> Result<bool, Box<dyn Error>> {
