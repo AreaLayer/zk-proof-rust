@@ -9,6 +9,6 @@ Soon
 ## Roadmap
 
 - [ ] Add core logic
-- [ ] Rust Bitcoin compatible
+- [x] Rust Bitcoin compatible
 - [ ] Crates
 - [ ] Official Beta release in 2025

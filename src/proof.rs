@@ -1,5 +1,5 @@
 use bellman::groth16::create_random_proof;
-use bellman::Engine;
+use bellman::pairing::Engine;
 use rand::thread_rng;
 use std::error::Error;
 use serde::Deserialize;
