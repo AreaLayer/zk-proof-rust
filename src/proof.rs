@@ -14,7 +14,8 @@ pub fn generate_proof<E: pairing::Engine>(
 ) -> Result<ZKProof<E>, Box<dyn Error>>
 where
     E::Fr: pairing::group::ff::PrimeField + bellman::PrimeFieldBits,
-{
+
+    {
     // Random number generator for proof generation
     let rng = &mut thread_rng();
 
