@@ -7,7 +7,9 @@ fn main() {
     let private_key = PrivateKey::new(&secp, &mut rand::thread_rng());
     let public_key = PublicKey::from_private_key(&secp, &private_key);
     let address = public_key.to_address(Network::Bitcoin);
-}pub fn get_address(privkey: &PrivateKey, network: Network) -> String {
+}
+
+pub fn get_address(privkey: &PrivateKey, network: Network) -> String {
     let public_key = PublicKey::from_private_key(&Secp256k1::new(), privkey);
     let script = Script::new_p2pkh(&public_key, network);
     let address = script.address(network).unwrap();
@@ -17,7 +19,7 @@ fn main() {
 
 pub fn get_balance(address: &str) -> Result<f64, Box<dyn std::error::Error>> {
     let client: Client = reqwest::Client::new();
-    let response = client.get(&format!("https://blockchain.info/q/addressbalance/{}", address)).send()?;
-    let balance = response.text()?.parse::<f64>()?;
+    let response = client.get(&format!("https://blockchain.info/q/addressbalance/{}", address)).send().await?;
+    let balance = response.text().await?.parse::<f64>()?;
     Ok(balance)
 }

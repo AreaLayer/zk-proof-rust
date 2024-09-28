@@ -1,14 +1,14 @@
 use bellman::groth16::create_random_proof;
+// Removed unused import
 use rand::thread_rng;
 use std::error::Error;
 
 #[derive(Debug)]
-pub struct ZKProof<E: bellman::Engine> {
+pub struct ZKProof<E: pairing::Engine> {
     proof: bellman::groth16::Proof<E>,
     public_inputs: Vec<Vec<u8>>, // Adjust based on your needs
 }
-
-pub fn generate_proof<E: pairing::Engine>(
+pub fn generate_proof<E: pairing::Engine + pairing::group::ff::PrimeField>(
     circuit: impl bellman::Circuit<E>,
     pk: &bellman::groth16::Parameters<E>,
 ) -> Result<ZKProof<E>, Box<dyn Error>> {
@@ -26,10 +26,9 @@ pub fn generate_proof<E: pairing::Engine>(
         proof,
         public_inputs,
     })
-}
-use bellman::groth16::PreparedVerifyingKey;
+}use bellman::groth16::PreparedVerifyingKey;
 
-pub fn verify_zk_proof<E: Engine>(
+pub fn verify_zk_proof<E: pairing::Engine>(
     zk_proof: &ZKProof<E>,
     vk: &PreparedVerifyingKey<E>
 ) -> Result<bool, Box<dyn Error>> {
