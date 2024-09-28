@@ -1,25 +1,26 @@
-use bellman::groth16::create_random_proof;
-// Removed unused import
+use bellman::groth16::{create_random_proof, PreparedVerifyingKey};
 use rand::thread_rng;
 use std::error::Error;
+use pairing::Engine;
+use pairing::group::ff::PrimeField; // Correct import
 
 #[derive(Debug)]
-pub struct ZKProof<E: pairing::Engine> {
+pub struct ZKProof<E: Engine> {
     proof: bellman::groth16::Proof<E>,
     public_inputs: Vec<Vec<u8>>, // Adjust based on your needs
 }
-pub fn generate_proof<E: pairing::Engine>(
+
+pub fn generate_proof<E: Engine>(
     circuit: impl bellman::Circuit<E>,
     pk: &bellman::groth16::Parameters<E>,
 ) -> Result<ZKProof<E>, Box<dyn Error>>
 where
-    E::Fr: pairing::group::ff::PrimeField + bellman::PrimeFieldBits,
-
-    {
+    E::Fr: PrimeField + PrimeFieldBits, // Add PrimeFieldBits trait bound
+{
     // Random number generator for proof generation
     let rng = &mut thread_rng();
 
-    // Generate the proof using the bellman `create_random_proof`
+    // Generate the proof using the Bellman `create_random_proof`
     let proof = create_random_proof(circuit, pk, rng)?;
 
     // Populate public_inputs based on the circuit's public inputs
@@ -30,20 +31,22 @@ where
         proof,
         public_inputs,
     })
-}
-
-use bellman::groth16::PreparedVerifyingKey;
-pub fn verify_zk_proof<E: pairing::Engine + pairing::MultiMillerLoop>(
+pub fn verify_zk_proof<E: Engine + pairing::MultiMillerLoop>(
     zk_proof: &ZKProof<E>,
-    vk: &PreparedVerifyingKey<E>
-) -> Result<bool, Box<dyn Error>> {
-    // Convert public inputs from Vec<Vec<u8>> to the format expected by the `bellman::groth16::verify_proof`
+    vk: &PreparedVerifyingKey<E>,
+) -> Result<bool, Box<dyn Error>> 
+where
+    E::Fr: PrimeField, // Ensure field element trait is correctly bounded
+{
+    // Convert public inputs from Vec<Vec<u8>> to the format expected by `bellman::groth16::verify_proof`
     let public_inputs: Vec<E::Fr> = zk_proof
         .public_inputs
         .iter()
         .map(|input| {
-            // Convert Vec<u8> to Fr (the field element type)
-            E::Fr::from_repr(E::Fr::Repr::from(input.as_slice()))
+            // Convert Vec<u8> to E::Fr::Repr, then to E::Fr
+            let mut repr = <<E as Engine>::Fr as PrimeField>::Repr::default();
+            repr.as_mut().copy_from_slice(input); // Assuming input length matches Repr size
+            E::Fr::from_repr(repr).map_err(|_| "Invalid field element representation")
         })
         .collect::<Result<Vec<_>, _>>()?;
 
