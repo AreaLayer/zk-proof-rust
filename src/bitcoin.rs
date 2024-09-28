@@ -1,14 +1,13 @@
-use bitcoin::{Network, PrivateKey, PublicKey, Script};
+use bitcoin::{key::Secp256k1, Network, PrivateKey, PublicKey, Script};
 use reqwest::Client;
 
 fn main() {
     // Generate a new private key
     let secp = Secp256k1::new();
-    let private_key = PrivateKey::new(&secp);
+    let private_key = PrivateKey::new(&secp, &mut rand::thread_rng());
     let public_key = PublicKey::from_private_key(&secp, &private_key);
-    let address = public_key.address(Network::Bitcoin).unwrap();
-}
-pub fn get_address(privkey: &PrivateKey, network: Network) -> String {
+    let address = public_key.to_address(Network::Bitcoin);
+}pub fn get_address(privkey: &PrivateKey, network: Network) -> String {
     let public_key = PublicKey::from_private_key(&Secp256k1::new(), privkey);
     let script = Script::new_p2pkh(&public_key, network);
     let address = script.address(network).unwrap();

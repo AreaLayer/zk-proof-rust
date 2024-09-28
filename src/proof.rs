@@ -3,12 +3,12 @@ use rand::thread_rng;
 use std::error::Error;
 
 #[derive(Debug)]
-pub struct ZKProof<E:Eq::Engine> {
+pub struct ZKProof<E: bellman::Engine> {
     proof: bellman::groth16::Proof<E>,
     public_inputs: Vec<Vec<u8>>, // Adjust based on your needs
 }
 
-pub fn generate_proof<E: Engine>(
+pub fn generate_proof<E: pairing::Engine>(
     circuit: impl bellman::Circuit<E>,
     pk: &bellman::groth16::Parameters<E>,
 ) -> Result<ZKProof<E>, Box<dyn Error>> {
@@ -27,7 +27,6 @@ pub fn generate_proof<E: Engine>(
         public_inputs,
     })
 }
-
 use bellman::groth16::PreparedVerifyingKey;
 
 pub fn verify_zk_proof<E: Engine>(
