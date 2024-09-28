@@ -1,6 +1,6 @@
-use bitcoin::{Network, PrivateKey, PublicKey, Script, Transaction, TransactionInput, TransactionOutput};
-use bitcoin::secp256k1::{Secp256k1, Message};
-use bitcoin::util::hash::{sha256d, Hash};
+use bitcoin::{Network, PrivateKey, PublicKey, Script};
+use bitcoin::secp256k1::{Secp256k1};
+use bitcoin::hashes::{sha256d, Hash};
 use bitcoin::util::key::{PublicKey, PrivateKey};
 use bitcoin::util::key::PublicKey;
 
