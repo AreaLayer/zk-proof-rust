@@ -1,8 +1,8 @@
-use bellman::{groth16::{create_random_proof, prepare_verifying_key, verify_proof, Proof, PreparedVerifyingKey}, Engine};
+use bellman::groth16::create_random_proof;
+use bellman::Engine;
 use rand::thread_rng;
 use std::error::Error;
 use serde::Deserialize;
-use serde::{Serialize, Deserialize};
 
 #[derive(Deserialize)]
 pub struct ZKProof<E: bellman::Engine> {
@@ -11,14 +11,14 @@ pub struct ZKProof<E: bellman::Engine> {
 }
 
 pub fn generate_proof<E: Engine>(
-    circuit: impl bellman::Circuit<E>, 
-    pk: &bellman::groth16::ProvingKey<E>
+    circuit: impl bellman::Circuit<E>,
+    pk: &bellman::groth16::Parameters<E>,
 ) -> Result<ZKProof<E>, Box<dyn Error>> {
     // Random number generator for proof generation
     let rng = &mut thread_rng();
 
     // Generate the proof using the bellman `create_random_proof`
-    let proof = create_random_proof(circuit, pk, rng)?;
+    let proof = create_random_proof(circuit, &pk, rng)?;
 
     // Populate public_inputs based on the circuit's public inputs
     // For simplicity, assuming the circuit's public inputs are accessible
@@ -28,8 +28,7 @@ pub fn generate_proof<E: Engine>(
         proof,
         public_inputs,
     })
-}
-pub fn verify_zk_proof<E: Engine>(
+}pub fn verify_zk_proof<E: Engine>(
     zk_proof: &ZKProof<E>,
     vk: &PreparedVerifyingKey<E>
 ) -> Result<bool, Box<dyn Error>> {

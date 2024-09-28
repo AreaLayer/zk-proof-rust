@@ -2,7 +2,7 @@
 
 use rand::Rng;
 use serde::{Serialize, Deserialize};
-use serde_json::{Deserialize, Serialize};
+use  serde_json::data::Value;
 
 // Function to generate a random nonce
 pub fn generate_nonce() -> Vec<u8> {
