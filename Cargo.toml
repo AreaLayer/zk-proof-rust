@@ -6,5 +6,4 @@ edition = "2021"
 [dependencies]
 bellman = "0.14" 
 rand = "0.8"     
-serde = { version = "1.0", features = ["derive"] }  
 bitcoin = "0.32.3"
