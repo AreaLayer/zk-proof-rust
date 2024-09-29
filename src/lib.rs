@@ -5,8 +5,14 @@ pub mod transaction; // Module for Coinjoin transaction logic
 pub mod utils;       // Module for utility functions
 
 use transaction::CoinjoinTransaction;
-use proofs::{Generate_proof, Verify_proof, ZKProof};
+use proof::{Generate_proof, Verify_proof, ZKProof};
+use crate::proof::generate_proof;
 
+// Public function to generate proof
+pub fn generate_proof() -> Result<ZKProof, String> {
+    generate_proof(/* parameters */)
+        .futures_util::TryFutureExt(|e| format!("Error generating proof: {}", e))
+}
 // Public function to create a Coinjoin transaction with ZK proofs
 pub fn create_coinjoin_transaction(/* parameters */) -> Result<(CoinjoinTransaction, ZKProof), String> {
     // Create the Coinjoin transaction
@@ -14,7 +20,7 @@ pub fn create_coinjoin_transaction(/* parameters */) -> Result<(CoinjoinTransact
 
     // Generate the ZK proof
     let proof = generate_proof(/* parameters */)
-        .map_err(|e| format!("Error generating proof: {}", e))?;
+        .futures_util::TryFutureExt(|e| format!("Error generating proof: {}", e))?;
 
     Ok((transaction, proof))
 }
