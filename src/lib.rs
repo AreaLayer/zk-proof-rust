@@ -1,36 +1,52 @@
 // src/lib.rs
 
-pub mod proof;      // Module for zero-knowledge proofs
-pub mod transaction; // Module for Coinjoin transaction logic
-pub mod utils;       // Module for utility functions
+pub mod proofs;
+pub mod transaction;
+pub mod utils;
 
-use transaction::CoinjoinTransaction;
-use proof::{generate_proof, verify_proof, ZKProof};
+use bitcoin::{secp256k1::{Secp256k1, SecretKey}, util::address::Address, Network, PrivateKey, PublicKey};
+use reqwest::blocking::Client;
+use transaction::{create_p2wpkh_script, create_p2tr_script};
+use proofs::{generate_proof, verify_proof, ZKProof};
+use utils::{serialize_to_json, generate_nonce};
 
-// Public function to generate proof
-pub fn generate_proof() -> Result<ZKProof, String> {
-    generate_proof(/* parameters */)
-        .futures_util::TryFutureExt(|e| format!("Error generating proof: {}", e))
-}
-// Public function to create a Coinjoin transaction with ZK proofs
-pub fn create_coinjoin_transaction(/* parameters */) -> Result<(CoinjoinTransaction, ZKProof), String> {
-    // Create the Coinjoin transaction
-    let transaction = CoinjoinTransaction::new(/* parameters */);
+/// Create and broadcast a Coinjoin transaction using Taproot or SegWit with ZK Proofs
+pub fn create_and_broadcast_transaction(
+    client: &Client,
+    is_taproot: bool,
+    private_key: &PrivateKey,
+    recipient_address: &str,
+    amount: u64,
+    proof_data: &ZKProof,
+) -> Result<String, String> {
+    let secp = Secp256k1::new();
 
-    // Generate the ZK proof
-    let proof = generate_proof(/* parameters */)
-        .futures_util::TryFutureExt(|e| format!("Error generating proof: {}", e))?;
+    // Derive public key from private key
+    let pub_key = PublicKey::from_private_key(&secp, private_key);
 
-    Ok((transaction, proof))
-}
+    // Generate address (Taproot or SegWit based on flag)
+    let address = if is_taproot {
+        Address::p2tr(&secp, pub_key, None, Network::Bitcoin)
+    } else {
+        Address::p2wpkh(&pub_key, Network::Bitcoin)
+    };
 
-// Public function to verify a Coinjoin transaction's proof
-pub fn verify_coinjoin_transaction(proof: &ZKProof) -> Result<bool, String> {
-    let vk = prepare_verifying_key(); // You should implement this function to get the verifying key
+    // Create the transaction
+    let transaction = transaction::create_coinjoin_transaction(
+        &address, recipient_address, amount, proof_data
+    );
 
-    // Verify the proof
-    let is_valid = verify_proof(proof, &vk)
-        .map_err(|e| format!("Error verifying proof: {}", e))?;
+    // Serialize transaction to JSON
+    let serialized_tx = serialize_to_json(&transaction)
+        .map_err(|e| format!("Serialization error: {}", e))?;
 
-    Ok(is_valid)
+    // Send the transaction using Reqwest client
+    let response = client
+        .post("https://your-bitcoin-node.com/sendrawtransaction")
+        .body(serialized_tx)
+        .send()
+        .map_err(|e| format!("HTTP request error: {}", e))?;
+
+    // Return transaction ID or error
+    response.text().map_err(|e| format!("Response error: {}", e))
 }
