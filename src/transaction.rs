@@ -1,14 +1,31 @@
-use serde::{Deserialize, Serialize};
-use bitcoin::psbt::{Input, Output};
-use zk_coinjoin_lib::Transaction;
-#[derive(Serialize, Deserialize)]
-pub struct CoinjoinTransaction {
-    inputs: Vec<Input>,  // Define Input struct
-    outputs: Vec<Output>, // Define Output struct
-    // Add other necessary fields
+// src/transaction.rs
+
+use bitcoin::{blockdata::script::Script, util::address::Address, secp256k1::{Secp256k1, SecretKey}, Network};
+
+/// Create a SegWit (P2WPKH) script
+pub fn create_p2wpkh_script(pub_key_hash: &[u8]) -> Script {
+    let mut script = Script::new();
+    script.push_opcode(bitcoin::blockdata::opcodes::all::OP_0); // Version 0
+    script.push_slice(pub_key_hash); // Push public key hash
+    script
 }
 
-pub struct deserialize_transaction(tx:: &str) -> CoinjoinTransaction {
-    let tx = serde_json::from_str(tx).unwrap();
-    tx
+/// Create a Taproot (P2TR) script
+pub fn create_p2tr_script(pub_key_hash: &[u8]) -> Script {
+    let mut script = Script::new();
+    script.push_opcode(bitcoin::blockdata::opcodes::all::OP_1); // Version 1 for Taproot
+    script.push_slice(pub_key_hash); // Push public key hash
+    script
+}
+
+/// Coinjoin Transaction creation function
+pub fn create_coinjoin_transaction(
+    sender_address: &Address,
+    recipient_address: &str,
+    amount: u64,
+    zk_proof: &super::proofs::ZKProof,
+) -> bitcoin::Transaction {
+    // Build a Bitcoin transaction here (you'll need to craft inputs, outputs)
+    // Use the scripts created with P2WPKH or P2TR
+    unimplemented!("Transaction logic goes here");
 }
