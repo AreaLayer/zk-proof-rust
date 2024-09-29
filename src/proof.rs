@@ -3,7 +3,8 @@ use serde::Serialize;
 
 #[derive(Serialize, Deserialize)]
 pub struct ZKProof {
-    proof: Proof,
+    proof: Proof<E>,
+    a: Vec<Vec<u8>>,
     public_inputs: Vec<Vec<u8>>, // Adjust based on your needs
 }
 impl ZKProof {
@@ -37,4 +38,14 @@ pub fn generate_proof(/* parameters */) -> ZKProof {
 }
 pub fn verify_proof(proof: &ZKProof, vk: &PreparedVerifyingKey) -> bool {
     // Use bellman to verify the proof
+}
+pub fn deserialize_proof(data: &[u8]) -> Result<ZKProof, String> {
+    // Deserialize the proof from bytes
+    proof::deserialize_proof(data);
+    a::deserialize_proof(data);
+    b fn serialize_proof(proof: &ZKProof) -> Result<Vec<u8>, String> {
+    // Serialize the proof to bytes
+    proof::serialize_proof(proof)
+    a::serialize_proof(proof)
+}
 }

@@ -5,8 +5,7 @@ pub mod transaction; // Module for Coinjoin transaction logic
 pub mod utils;       // Module for utility functions
 
 use transaction::CoinjoinTransaction;
-use proof::{Generate_proof, Verify_proof, ZKProof};
-use crate::proof::generate_proof;
+use proof::{generate_proof, verify_proof, ZKProof};
 
 // Public function to generate proof
 pub fn generate_proof() -> Result<ZKProof, String> {
