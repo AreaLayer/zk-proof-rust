@@ -1,51 +1,31 @@
-use bellman::groth16::{PreparedVerifyingKey, Proof};
-use serde::Serialize;
+// src/proofs.rs
+
+use bellman::groth16::{Proof, VerifyingKey, PreparedVerifyingKey, create_random_proof, verify_proof as groth_verify};
+use rand::rngs::OsRng;
 
 #[derive(Serialize, Deserialize)]
 pub struct ZKProof {
-    proof: Proof<E>,
-    a: Vec<Vec<u8>>,
-    public_inputs: Vec<Vec<u8>>, // Adjust based on your needs
+    proof: Proof,
+    public_inputs: Vec<u8>, // Modify this structure based on your needs
 }
-impl ZKProof {
-    pub fn new(proof: Proof, public_inputs: Vec<Vec<u8>>) -> Self {
-        ZKProof {
-            proof,
-            public_inputs,
-        }
-    }
 
-    pub fn verify(&self, vk: &PreparedVerifyingKey) -> bool {
-        self.proof.verify(vk, &self.public_inputs)
-    }
+/// Generate a ZK proof using Bellman
+pub fn generate_proof() -> Result<ZKProof, String> {
+    // Example proof generation logic (you need to implement circuit logic)
+    let rng = OsRng;
+    let proof = create_random_proof(/* circuit */, /* parameters */, rng)
+        .map_err(|e| format!("Error generating proof: {}", e))?;
 
-    pub fn proof(&self) -> &Proof {
-        &self.proof
-    }
-    pub fn public_inputs(&self) -> &Vec<Vec<u8>> {
-        &self.public_inputs
-    }
-    pub fn set_public_inputs(&mut self, public_inputs: Vec<Vec<u8>>) {
-        self.public_inputs = public_inputs;
-    }
-    pub fn set_proof(&mut self, proof: Proof) {
-        self.proof = proof;
-    }
+    Ok(ZKProof {
+        proof,
+        public_inputs: vec![], // Replace with actual inputs
+    })
 }
-pub fn generate_proof(/* parameters */) -> ZKProof {
-    // Use bellman to create a proof
-    // Populate ZKProof structure
-}
-pub fn verify_proof(proof: &ZKProof, vk: &PreparedVerifyingKey) -> bool {
-    // Use bellman to verify the proof
-}
-pub fn deserialize_proof(data: &[u8]) -> Result<ZKProof, String> {
-    // Deserialize the proof from bytes
-    proof::deserialize_proof(data);
-    a::deserialize_proof(data);
-    b fn serialize_proof(proof: &ZKProof) -> Result<Vec<u8>, String> {
-    // Serialize the proof to bytes
-    proof::serialize_proof(proof)
-    a::serialize_proof(proof)
-}
+
+/// Verify a ZK proof using Bellman
+pub fn verify_proof(proof: &ZKProof, vk: &PreparedVerifyingKey) -> Result<bool, String> {
+    let is_valid = groth_verify(&proof.proof, &vk, &proof.public_inputs)
+        .map_err(|e| format!("Error verifying proof: {}", e))?;
+
+    Ok(is_valid)
 }
