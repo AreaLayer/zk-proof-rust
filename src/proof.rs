@@ -1,4 +1,7 @@
-spawn_zk_snarks::proof::Proof;
+use spawn_zk_snarks::proof::Proof;
+use spawn_zk_snarks::proof::generate_proof;
+use spawn_zk_snarks::utils::random_witness;
+use spawn_zk_snarks::utils::hash_witness;
 
 fn main() {
     let input = circuit_input();
