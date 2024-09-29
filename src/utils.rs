@@ -1,10 +1,16 @@
 // src/utils.rs
 
+use serde::{Serialize, Deserialize};
 use rand::Rng;
 
-// Function to generate a random nonce
+/// Serialize an object to JSON
+pub fn serialize_to_json<T: Serialize>(data: &T) -> Result<String, serde_json::Error> {
+    serde_json::to_string(data)
+}
+
+/// Generate a random nonce
 pub fn generate_nonce() -> Vec<u8> {
     let mut rng = rand::thread_rng();
-    let nonce: Vec<u8> = (0..32).map(|_| rng.gen()).collect(); // Generate 32 bytes
+    let nonce: Vec<u8> = (0..32).map(|_| rng.gen()).collect(); // Generate 32 random bytes
     nonce
 }
