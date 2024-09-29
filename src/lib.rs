@@ -1,13 +1,31 @@
 // src/lib.rs
 
-pub mod proof; // Module for zero-knowledge proofspub mod transaction; 
-pub mod utils;
+pub mod proofs;      // Module for zero-knowledge proofs
 pub mod transaction; // Module for Coinjoin transaction logic
-pub mod bitcoin;
+pub mod utils;       // Module for utility functions
 
-use spawn_zk_snarks::keygen::KeyPair;
-use spawn_zk_snarks::keygen::KeyPair;
-use spawn_zk_snarks::proof::{Proof, generate_proof};  // Function name may need to be in snake_case
+use transaction::CoinjoinTransaction;
+use proofs::{generate_proof, verify_proof, ZKProof};
 
-use crate::CoinjoinTransaction;
-use crate::Verify_CoinjoinTransaction;
+// Public function to create a Coinjoin transaction with ZK proofs
+pub fn create_coinjoin_transaction(/* parameters */) -> Result<(CoinjoinTransaction, ZKProof), String> {
+    // Create the Coinjoin transaction
+    let transaction = CoinjoinTransaction::new(/* parameters */);
+
+    // Generate the ZK proof
+    let proof = generate_proof(/* parameters */)
+        .map_err(|e| format!("Error generating proof: {}", e))?;
+
+    Ok((transaction, proof))
+}
+
+// Public function to verify a Coinjoin transaction's proof
+pub fn verify_coinjoin_transaction(proof: &ZKProof) -> Result<bool, String> {
+    let vk = prepare_verifying_key(); // You should implement this function to get the verifying key
+
+    // Verify the proof
+    let is_valid = verify_proof(proof, &vk)
+        .map_err(|e| format!("Error verifying proof: {}", e))?;
+
+    Ok(is_valid)
+}

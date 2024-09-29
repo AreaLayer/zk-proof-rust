@@ -1,22 +1,39 @@
-use spawn_zk_snarks::proof::Proof;
-use spawn_zk_snarks::proof::generate_proof;
-use spawn_zk_snarks::utils::random_witness;
-use spawn_zk_snarks::utils::hash_witness;
+use bellman::groth16::{Proof, VerifyingKey, PreparedVerifyingKey};
 
-fn main() {
-    let input = circuit_input();
-    let proof = prove(&input);
-    let output = circuit_output(&input);
-    let result = verify(&proof, &output);
-    println!("{}", result);
+#[derive(Serialize, Deserialize)]
+pub struct ZKProof {
+    proof: Proof,
+    public_inputs: Vec<Vec<u8>>, // Adjust based on your needs
 }
+impl ZKProof {
+    pub fn new(proof: Proof, public_inputs: Vec<Vec<u8>>) -> Self {
+        ZKProof {
+            proof,
+            public_inputs,
+        }
+    }
 
-pub fn circuit_input() -> Vec<u64> {
-    vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    pub fn verify(&self, vk: &PreparedVerifyingKey) -> bool {
+        self.proof.verify(vk, &self.public_inputs)
+    }
+
+    pub fn proof(&self) -> &Proof {
+        &self.proof
+    }
+    pub fn public_inputs(&self) -> &Vec<Vec<u8>> {
+        &self.public_inputs
+    }
+    pub fn set_public_inputs(&mut self, public_inputs: Vec<Vec<u8>>) {
+        self.public_inputs = public_inputs;
+    }
+    pub fn set_proof(&mut self, proof: Proof) {
+        self.proof = proof;
+    }
 }
-
-struct proof {
-    a: Vec<u64>,
-    b: Vec<u64>,
-    c: Vec<u64>,
+pub fn generate_proof(/* parameters */) -> ZKProof {
+    // Use bellman to create a proof
+    // Populate ZKProof structure
+}
+pub fn verify_proof(proof: &ZKProof, vk: &PreparedVerifyingKey) -> bool {
+    // Use bellman to verify the proof
 }
