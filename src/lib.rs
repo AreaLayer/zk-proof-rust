@@ -3,6 +3,7 @@
 pub mod proofs;
 pub mod transaction;
 pub mod utils;
+pub mod circuit; 
 
 use bitcoin::{secp256k1::{Secp256k1, SecretKey}, util::address::Address, Network, PrivateKey, PublicKey};
 use reqwest::blocking::Client;
