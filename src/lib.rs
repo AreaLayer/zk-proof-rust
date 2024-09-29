@@ -1,6 +1,6 @@
 // src/lib.rs
 
-pub mod proofs;      // Module for zero-knowledge proofs
+pub mod proof;      // Module for zero-knowledge proofs
 pub mod transaction; // Module for Coinjoin transaction logic
 pub mod utils;       // Module for utility functions
 

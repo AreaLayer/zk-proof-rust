@@ -1,4 +1,5 @@
 use bellman::groth16::{Proof, VerifyingKey, PreparedVerifyingKey};
+use serde::Serialize;
 
 #[derive(Serialize, Deserialize)]
 pub struct ZKProof {
