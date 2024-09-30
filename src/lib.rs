@@ -10,6 +10,8 @@ use bitcoin::Network;
 use bitcoin::PublicKey;
 use bitcoin::PrivateKey;
 use bitcoin::address::Address;
+use proofs::ZKProof;
+use reqwest::Client;
 use serde::Serialize;
 
 /// Create and broadcast a Coinjoin transaction using Taproot or SegWit with ZK Proofs
@@ -28,7 +30,7 @@ pub fn create_and_broadcast_transaction(
 
     // Generate address (Taproot or SegWit based on flag)
     let address = if is_taproot {
-        Address::p2tr(&secp, pub_key, None, Network::Bitcoin)
+        Address::p2tr(&secp, pub_key.into(), None, Network::Bitcoin)
     } else {
         Address::p2wpkh(&pub_key, Network::Bitcoin)
     };
