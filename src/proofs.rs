@@ -1,5 +1,6 @@
 // src/proofs.rs
 
+use bellman::groth16::create_random_proof;
 use bellman::groth16::Proof;
 use bitcoin::secp256k1::VerifyOnlyPreallocated;
 use serde::Deserialize;
@@ -8,7 +9,7 @@ use rand::rngs::OsRng;
 
 #[derive(Serialize, Deserialize)]
 pub struct ZKProof {
-    proof: Proof<E::Engine>,
+    proof: Proof<Eq::Engine>,
     public_inputs: Vec<u8>, // Modify this structure based on your needs
 }
 
@@ -16,7 +17,7 @@ pub struct ZKProof {
 pub fn generate_proof() -> Result<ZKProof, String> {
     // Example proof generation logic (you need to implement circuit logic)
     let rng: OsRng = OsRng;
-    let proof: Proof<_> = create_random_proof(/* circuit */, /* parameters */, rng)
+    let proof: Proof<_> = create_random_proof;
         .map_err(|e| format!("Error generating proof: {}", e))?;
 
     Ok(ZKProof {

@@ -48,7 +48,7 @@ pub fn create_and_broadcast_transaction(
     let response = client
         .post("https://your-bitcoin-node.com/sendrawtransaction")
         .body(serialized_tx)
-        .await.send()
+        .send()
         .map_err(|e| format!("HTTP request error: {}", e))?;
 
     // Return transaction ID or error
