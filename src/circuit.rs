@@ -4,7 +4,7 @@ use std::vec;
 
 use bellman::{Circuit, ConstraintSystem, SynthesisError};
 use bellman::gadgets::multipack;
-use bitcoin::secp256k1::{SecretKey, PublicKey};
+use bitcoin::secp256k1::{PublicKey, Scalar, SecretKey};
 
 /// ZK circuit to prove that the public key corresponds to the private key
 pub struct KeyOwnershipCircuit {
@@ -14,7 +14,7 @@ pub struct KeyOwnershipCircuit {
     pub message: Option<[u8; 32]>, // The message to sign (typically the transaction hash)
 }
 
-impl<CS: ConstraintSystem<String>> Circuit<String> for KeyOwnershipCircuit {
+impl<CS: ConstraintSystem<Scalar>> Circuit<String> for KeyOwnershipCircuit {
     fn synthesize(self, cs: &mut CS) -> Result<(), SynthesisError> {
         // Public inputs: public key, message (transaction hash)
         let _pub_key_var = multipack::bytes_to_bits_le(&self.public_key.unwrap().serialize()[..]);
