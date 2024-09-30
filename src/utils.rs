@@ -1,6 +1,6 @@
 // src/utils.rs
 
-use serde::{Serialize, Deserialize};
+use serde::Serialize;
 use rand::Rng;
 
 /// Serialize an object to JSON

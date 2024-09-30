@@ -1,6 +1,7 @@
 // src/transaction.rs
 
-use bitcoin::{blockdata::script::Script, util::address::Address, secp256k1};
+use bitcoin::{blockdata::script::Script};
+use bitcoin::address::Address;
 
 /// Create a SegWit (P2WPKH) script
 pub fn create_p2wpkh_script(pub_key_hash: &[u8]) -> Script {
