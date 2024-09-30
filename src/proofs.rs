@@ -7,7 +7,7 @@ use rand::rngs::OsRng;
 
 #[derive(Serialize, Deserialize)]
 pub struct ZKProof {
-    proof: Proof,
+    proof: Proof<E::Engine>,
     public_inputs: Vec<u8>, // Modify this structure based on your needs
 }
 
