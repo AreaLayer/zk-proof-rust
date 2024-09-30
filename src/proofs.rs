@@ -1,7 +1,6 @@
 // src/proofs.rs
 
-use bellman::groth16::{Proof, PreparedVerifyingKey};
-use bitcoin::block::ValidationError;
+use bellman::groth16::Proof;
 use bitcoin::secp256k1::VerifyOnlyPreallocated;
 use serde::Deserialize;
 use serde::Serialize;

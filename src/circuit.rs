@@ -19,15 +19,10 @@ impl<CS: ConstraintSystem<Scalar>> Circuit<String> for KeyOwnershipCircuit {
         // Public inputs: public key, message (transaction hash)
         let _pub_key_var = multipack::bytes_to_bits_le(&self.public_key.unwrap().serialize()[..]);
         let _message_var = multipack::bytes_to_bits_le(&self.message.unwrap());
-        let vec: Vec<_> = vec![];
+        let vec: Vec<T> = vec![];
 
         // Witness inputs: private key
         let _priv_key_var = multipack::bytes_to_bits_le(&self.private_key.unwrap()[..]);
-
-        // Create constraints for signature validation (ECDSA for SegWit, Schnorr for Taproot)
-        // Pseudo-code:
-        // cs.enforce(|| "signature", |lc| lc + priv_key_var, |lc| lc + message_var, |lc| lc + pub_key_var);
-
         Ok(())
     }
 }
