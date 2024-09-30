@@ -14,8 +14,8 @@ pub struct ZKProof {
 /// Generate a ZK proof using Bellman
 pub fn generate_proof() -> Result<ZKProof, String> {
     // Example proof generation logic (you need to implement circuit logic)
-    let rng = OsRng;
-    let proof = create_random_proof(/* circuit */, /* parameters */, rng)
+    let rng: OsRng = OsRng;
+    let proof: Proof<_> = create_random_proof(/* circuit */, /* parameters */, rng)
         .map_err(|e| format!("Error generating proof: {}", e))?;
 
     Ok(ZKProof {
@@ -26,7 +26,7 @@ pub fn generate_proof() -> Result<ZKProof, String> {
 
 /// Verify a ZK proof using Bellman
 pub fn verify_proof(proof: &ZKProof, vk: &PreparedVerifyingKey) -> Result<bool, String> {
-    let is_valid = groth_verify(&proof.proof, &vk, &proof.public_inputs)
+    let is_valid: bool = groth_verify(&proof.proof, &vk, &proof.public_inputs)
         .map_err(|e| format!("Error verifying proof: {}", e))?;
 
     Ok(is_valid)
