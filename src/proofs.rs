@@ -1,6 +1,8 @@
 // src/proofs.rs
 
-use bellman::groth16::{Proof, PreparedVerifyingKey, verify_proof};
+use bellman::groth16::{Proof, PreparedVerifyingKey};
+use serde::Deserialize;
+use serde::Serialize;
 use rand::rngs::OsRng;
 
 #[derive(Serialize, Deserialize)]
