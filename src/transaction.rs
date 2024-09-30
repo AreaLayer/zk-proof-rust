@@ -2,6 +2,7 @@
 
 use bitcoin::blockdata::script::Script;
 use bitcoin::blockdata::script::Builder;
+use bitcoin::script::Push_slice;
 use bitcoin::address::Address;
 
 /// Create a SegWit (P2WPKH) script
