@@ -13,9 +13,9 @@ pub fn create_p2wpkh_script(pub_key_hash: &[u8]) -> Script {
 /// Create a Taproot (P2TR) script
 pub fn create_p2tr_script(pub_key_hash: &[u8]) -> Script {
     let mut script = Script::new();
-    script.push_opcode(bitcoin::blockdata::opcodes::all::OP_1); // Version 1 for Taproot
-    script.push_slice(pub_key_hash); // Push public key hash
-    script
+    script.opcode(bitcoin::blockdata::opcodes::all::OP_1); // Version 1 for Taproot
+    script.slice(pub_key_hash); // Push public key hash
+    
 }
 
 /// Coinjoin Transaction creation function
