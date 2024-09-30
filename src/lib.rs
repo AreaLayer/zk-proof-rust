@@ -8,8 +8,8 @@ pub mod circuit;
 use bitcoin::{secp256k1::{Secp256k1, SecretKey}, util::address::Address, Network, PrivateKey, PublicKey};
 use reqwest::blocking::Client;
 use transaction::{create_p2wpkh_script, create_p2tr_script};
-use proofs::{generate_proof, verify_proof, ZKProof};
-use utils::{serialize_to_json, generate_nonce};
+use proofs::ZKProof;
+use utils::Serialize_to_json;
 
 /// Create and broadcast a Coinjoin transaction using Taproot or SegWit with ZK Proofs
 pub fn create_and_broadcast_transaction(
