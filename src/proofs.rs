@@ -13,22 +13,25 @@ pub struct ZKProof {
     public_inputs: Vec<u8>, // Modify this structure based on your needs
 }
 
-/// Generate a ZK proof using Bellman
-pub fn generate_proof() -> Result<ZKProof, String> {
-    // Example proof generation logic (you need to implement circuit logic)
-    let rng: OsRng = OsRng;
-    let proof: Proof<_> = create_random_proof;
+/// Generate a ZK proof 
+pub fn generate_proof(circuit: ExampleCircuit, vk: &VerifyingKey<Bls12>) -> Result<ZKProof, String> {
+    let mut rng = OsRng;  // Use OsRng for secure randomness
+
+    // Create random proof
+    let proof = create_random_proof(circuit, vk, &mut rng)
         .map_err(|e| format!("Error generating proof: {}", e))?;
+
+    // Define public inputs (replace with your actual public inputs)
+    let public_inputs: Vec<Fr> = vec![];
 
     Ok(ZKProof {
         proof,
-        public_inputs: vec![], // Replace with actual inputs
-    })
-}
-
-/// Verify a ZK proof using Bellman
-pub fn verify_proof(proof: &ZKProof, vk: &VerifyOnlyPreallocated) -> Result<bool, String> {
-    let is_valid: bool = verify_proof(&proof.proof, &vk, &proof.public_inputs)
+        public_inputs,
+    });
+/// Verify a ZK proof
+pub fn verify_proof(proof: &ZKProof, vk: &VerifyingKey<Bls12>) -> Result<bool, String> {
+    // Verify the proof using Groth16's verify_proof function
+    let is_valid = verify_proof(vk, &proof.proof)
         .map_err(|e| format!("Error verifying proof: {}", e))?;
 
     Ok(is_valid)

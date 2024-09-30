@@ -14,12 +14,12 @@ pub struct KeyOwnershipCircuit {
     pub message: Option<[u8; 32]>, // The message to sign (typically the transaction hash)
 }
 
-impl<CS: ConstraintSystem<Scalar>> Circuit<String> for KeyOwnershipCircuit {
-    fn synthesize(self, cs: &mut CS) -> Result<(), SynthesisError> {
+impl<CS: ConstraintSystem<Scalar>, T> Circuit<String> for KeyOwnershipCircuit {
+    fn synthesize(self, _cs: &mut CS) -> Result<(), SynthesisError> {
         // Public inputs: public key, message (transaction hash)
         let _pub_key_var = multipack::bytes_to_bits_le(&self.public_key.unwrap().serialize()[..]);
         let _message_var = multipack::bytes_to_bits_le(&self.message.unwrap());
-        let vec: Vec<T> = vec![];
+        let _vec: Vec<T> = vec![];
 
         // Witness inputs: private key
         let _priv_key_var = multipack::bytes_to_bits_le(&self.private_key.unwrap()[..]);
