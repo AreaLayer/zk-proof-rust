@@ -10,7 +10,7 @@ use bitcoin::Network;
 use bitcoin::PublicKey;
 use bitcoin::PrivateKey;
 use bitcoin::address::Address;
-use serde::utils::Serialize_to_json;
+use serde::Serialize;
 
 /// Create and broadcast a Coinjoin transaction using Taproot or SegWit with ZK Proofs
 pub fn create_and_broadcast_transaction(
