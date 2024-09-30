@@ -1,6 +1,8 @@
 // src/proofs.rs
 
 use bellman::groth16::{Proof, PreparedVerifyingKey};
+use bitcoin::block::ValidationError;
+use bitcoin::secp256k1::VerifyOnlyPreallocated;
 use serde::Deserialize;
 use serde::Serialize;
 use rand::rngs::OsRng;
@@ -25,8 +27,8 @@ pub fn generate_proof() -> Result<ZKProof, String> {
 }
 
 /// Verify a ZK proof using Bellman
-pub fn verify_proof(proof: &ZKProof, vk: &PreparedVerifyingKey) -> Result<bool, String> {
-    let is_valid: bool = groth_verify(&proof.proof, &vk, &proof.public_inputs)
+pub fn verify_proof(proof: &ZKProof, vk: &VerifyOnlyPreallocated) -> Result<bool, String> {
+    let is_valid: bool = verify_proof(&proof.proof, &vk, &proof.public_inputs)
         .map_err(|e| format!("Error verifying proof: {}", e))?;
 
     Ok(is_valid)
