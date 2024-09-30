@@ -1,16 +1,15 @@
 // src/transaction.rs
 
-use bitcoin::{blockdata::script::Script};
+use bitcoin::blockdata::script::Script;
 use bitcoin::address::Address;
+use bitcoin::Opcode::{OP_0, OP_1};
 
 /// Create a SegWit (P2WPKH) script
 pub fn create_p2wpkh_script(pub_key_hash: &[u8]) -> Script {
     let mut script = Script::new();
-    script.push_opcode(bitcoin::blockdata::opcodes::all::OP_0); // Version 0
-    script.push_slice(pub_key_hash); // Push public key hash
-    script
+    script.opcode(bitcoin::blockdata::opcodes::all::OP_0); // Version 0
+    script.slice(pub_key_hash); // Push public key hash
 }
-
 /// Create a Taproot (P2TR) script
 pub fn create_p2tr_script(pub_key_hash: &[u8]) -> Script {
     let mut script = Script::new();
