@@ -28,9 +28,10 @@ pub fn generate_proof(circuit: ExampleCircuit, vk: &VerifyingKey<Bls12>) -> Resu
         proof,
         public_inputs,
     });
+}
 /// Verify a ZK proof
-pub fn verify_proof(proof: &ZKProof, vk: &VerifyingKey<Bls12>) -> Result<bool, String> {
-    // Verify the proof using Groth16's verify_proof function
+pub fn verify_proof_fn(proof: &ZKProof, vk: &VerifyingKey<Bls12>) -> Result<bool, String> {
+    // Verify the proof using the verify_proof function (2 arguments)
     let is_valid = verify_proof(vk, &proof.proof)
         .map_err(|e| format!("Error verifying proof: {}", e))?;
 
