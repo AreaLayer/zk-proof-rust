@@ -6,11 +6,7 @@ pub mod utils;
 pub mod circuit; 
 
 use bitcoin::secp256k1::Secp256k1;
-use bitcoin::Network;
-use bitcoin::PublicKey;
-use bitcoin::PrivateKey;
 use bitcoin::address::Address;
-use proofs::ZKProof;
 use reqwest::Client;
 
 /// Create and broadcast a Coinjoin transaction using Taproot or SegWit with ZK Proofs
