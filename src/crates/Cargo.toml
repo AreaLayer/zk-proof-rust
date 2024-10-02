@@ -1,0 +1,8 @@
+[package]
+name = "crates"
+version = "1.0.0"
+edition = "2021"
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
