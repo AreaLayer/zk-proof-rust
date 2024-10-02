@@ -2,6 +2,7 @@
 
 use std::vec;
 
+use crate::Circuit;
 use bellman::{Circuit, ConstraintSystem, SynthesisError};
 use bellman::gadgets::multipack;
 use bitcoin::secp256k1::{PublicKey, Scalar, SecretKey};

@@ -1,5 +1,6 @@
 // src/utils.rs
 
+use crate::Util;
 use serde::Serialize;
 use rand::Rng;
 

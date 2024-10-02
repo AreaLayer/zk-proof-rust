@@ -1,5 +1,6 @@
 // src/proofs.rs
 
+use crate::Proofs;
 use bellman::groth16::Proof;
 use serde::Deserialize;
 use serde::Serialize;

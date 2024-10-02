@@ -1,5 +1,6 @@
 // src/transaction.rs
 
+use crate::Transaction;
 use bitcoin::address::Address;
 
 /// Coinjoin Transaction creation function
