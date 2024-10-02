@@ -12,12 +12,14 @@ use reqwest::Client;
 pub fn create_and_broadcast_transaction(
     client: &Client,
     is_taproot: bool,
-    private_key: &PrivateKey,
     recipient_address: &str,
     amount: u64,
-    proof_data: &ZKProof,
-    {
-    let _ = proof_data;
+) -> Result<(), String> {
+    let _ = is_taproot;
+    let _ = client;
     let _ = recipient_address;
-    let secp = Secp256k1::new();
-    }
+    let _ = amount;
+    let _secp = Secp256k1::new();
+    
+    Ok(())
+}
