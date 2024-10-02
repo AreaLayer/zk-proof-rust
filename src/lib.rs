@@ -16,11 +16,8 @@ pub fn create_and_broadcast_transaction(
     recipient_address: &str,
     amount: u64,
     proof_data: &ZKProof,
-) -> Result<String, String> {
+    {
     let _ = proof_data;
     let _ = recipient_address;
     let secp = Secp256k1::new();
-
-    // Derive public key from private key
-    let pub_key = PublicKey::from_private_key(&secp, private_key);
-};
+    }
