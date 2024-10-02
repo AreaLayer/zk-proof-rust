@@ -12,7 +12,6 @@ use bitcoin::PrivateKey;
 use bitcoin::address::Address;
 use proofs::ZKProof;
 use reqwest::Client;
-use utils::serialize_to_json;
 
 /// Create and broadcast a Coinjoin transaction using Taproot or SegWit with ZK Proofs
 pub fn create_and_broadcast_transaction(
@@ -27,30 +26,4 @@ pub fn create_and_broadcast_transaction(
 
     // Derive public key from private key
     let pub_key = PublicKey::from_private_key(&secp, private_key);
-
-    // Generate address (Taproot or SegWit based on flag)
-    let address = if is_taproot {
-        Address::p2tr(&secp, pub_key.into(), None, Network::Bitcoin)
-    } else {
-        Address::p2wpkh(&pub_key, Network::Bitcoin)
-    };
-
-    // Create the transaction
-    let transaction = transaction::create_coinjoin_transaction(
-        &address, recipient_address, amount, proof_data
-    );
-
-    // Serialize transaction to JSON
-    let serialized_tx = serialize_to_json(&transaction)
-        .map_err(|e| format!("Serialization error: {}", e))?;
-
-    // Send the transaction using Reqwest client
-    let response = client
-        .post("https://your-bitcoin-node.com/sendrawtransaction")
-        .body(serialized_tx)
-        .send()
-        .map_err(|e| format!("HTTP request error: {}", e))?;
-
-    // Return transaction ID or error
-    response.text().map_err(|e| format!("Response error: {}", e))
-}
+};
