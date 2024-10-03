@@ -2,6 +2,10 @@
 name = "zk_coinjoin_lib"
 version = "0.1.0"
 edition = "2021"
+description = "ZK Proof library for Coinjoin"
+homepage = "https://arealayer.net/projects"
+repository = "https://github.com/arealayer/zk_coinjoin_lib"
+license = "MIT"
 
 [dependencies]
 bellman = "0.14"
