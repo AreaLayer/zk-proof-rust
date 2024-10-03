@@ -9,7 +9,6 @@ The **ZK Proof Coinjoin Library** is a Rust-based implementation designed to fac
 ### Key Features
 
 - **Zero-Knowledge Proofs**: Implement zk-SNARKs to ensure that transaction details remain confidential while still allowing verification of the transaction's validity.
-- **Multisig Support**: Enable multi-signature transactions to enhance security and ensure that multiple parties can participate in Coinjoin arrangements.
 - **Peer-to-Peer Communication**: Facilitate secure communication between participants in a Coinjoin transaction, ensuring that user identities and transaction details are protected.
 - **SegWit and Taproot Compatibility**: Support modern Bitcoin features like Segregated Witness (SegWit) and Taproot, enhancing flexibility and transaction efficiency.
 
@@ -23,7 +22,7 @@ To get started with the ZK Proof Coinjoin Library, check out the [Installation](
 
 We welcome contributions from the community! Please see the [Contributing](#contributing) section for guidelines on how to get involved.
 
-## Documentation
+### Documentation
 
 Soon
 
