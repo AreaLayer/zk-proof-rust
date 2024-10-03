@@ -7,6 +7,7 @@ use bellman::{Circuit, ConstraintSystem, SynthesisError};
 use bellman::gadgets::multipack;
 use bitcoin::secp256k1::{PublicKey, Scalar, SecretKey};
 
+
 // Main function pub crate circuit;
 pub (crate) fn circuit() -> Circuit<String> {
     // Create a new circuit
@@ -40,4 +41,18 @@ impl<CS: ConstraintSystem<Scalar>, T> Circuit<String> for KeyOwnershipCircuit {
         Ok(())
     }
 }
+}
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use bitcoin::secp256k1::{PublicKey, SecretKey};
+    use bitcoin::util::hash::Hash;
+    use crate::Circuit;
+    use bellman::{Circuit, ConstraintSystem, SynthesisError};
+
+    fn test_key_ownership_circuit() {
+        // Create a new circuit
+        let circuit = Circuit::new();
+        let public_key = PublicKey::from_slice(&[1; 33]).unwrap();
+    }
 }

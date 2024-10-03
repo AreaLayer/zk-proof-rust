@@ -29,3 +29,24 @@ impl ZKProof {
         &self.public_inputs
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use bellman::groth16::Proof;
+    use bellman::groth16::VerifyingKey;
+    use bellman::groth16::{prepare_verifying_key, verify_proof};
+    use bellman::pairing::bn256::{Bn256, Fr};
+    use create::Proofs;
+
+    fn test () {
+        let proofs = Proofs();
+        let proof = proofs[0].proof();
+        let public_inputs = proofs[0].public_inputs();
+        let verifying_key = VerifyingKey::<Bn256>::from_bytes(&vec![0; 64]).unwrap();
+        let mut prepared_vk = prepare_verifying_key(&verifying_key);
+        let mut rng = rand::thread_rng();
+        let input = vec![Fr::random(&mut rng); 10];
+        let proof = Proof::<Bn256>::from_bytes(&vec![0; 128]).unwrap();
+    }
+}

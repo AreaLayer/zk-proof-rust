@@ -49,3 +49,37 @@ pub fn broadcast_transaction(transaction: &Transaction) {
     // For demonstration purposes, we'll just print the transaction.
     println!("Broadcasting transaction: {}", transaction.transaction);
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use bitcoin::address::Address;
+    use bitcoin::secp256k1::rand::rngs::OsRng;
+    use crate::Transaction;
+    use crate::proofs::ZKProof;
+
+    fn test_transaction() -> Transaction {
+        // Create a new transaction
+        let transaction = Transaction::new();
+        // Return the transaction
+        transaction
+    }
+    #[test]
+    fn test_create_coinjoin_transaction() {
+        // Create a sender address
+        let sender_address = Address::from_str("1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa").unwrap();
+        // Create ZK proof (for simplicity, we're using a dummy proof)
+        let zk_proof = ZKProof::new();
+        // Create a recipient address
+        let recipient_address = "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa";
+        // Create an amount (in satoshis)
+        let amount = 100000000;
+        // Create a coinjoin transaction
+        let transaction = create_coinjoin_transaction(
+            &sender_address,
+            recipient_address,
+            amount,
+            &zk_proof,
+            );
+        }
+    }
