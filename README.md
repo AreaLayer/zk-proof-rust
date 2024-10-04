@@ -20,7 +20,8 @@ To get started with the ZK Proof Coinjoin Library, check out the [Installation](
 
 ### Installation
 
-You can use crates
+To start using the ZK Proof SDK, add it to your Cargo.toml:
+
 ```rust
 [dependencies]
 zk_coinjoin_lib = "1.0.0-beta"
