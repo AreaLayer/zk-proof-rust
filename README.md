@@ -18,7 +18,7 @@ This library is suitable for developers looking to implement Coinjoin functional
 
 To get started with the ZK Proof Coinjoin Library, check out the [Installation](###installation) section for setup instructions and examples on how to use the library in your projects.
 
-###
+### Installation
 
 You can use crates
 ```rust
