@@ -16,15 +16,15 @@ The **ZK Proof Coinjoin Library** is a Rust-based implementation designed to fac
 
 This library is suitable for developers looking to implement Coinjoin functionality in their Bitcoin applications, enabling users to enhance their privacy during transactions. It can be utilized in wallets, payment processors, and other Bitcoin-related applications.
 
-To get started with the ZK Proof Coinjoin Library, check out the [Installation](#installation) section for setup instructions and examples on how to use the library in your projects.
+To get started with the ZK Proof Coinjoin Library, check out the [Installation](###installation) section for setup instructions and examples on how to use the library in your projects.
 
-### Contributing
+###
 
-We welcome contributions from the community! Please see the [Contributing](#contributing) section for guidelines on how to get involved.
-
-### Documentation
-
-Soon
+You can use crates
+```rust
+[dependencies]
+zk_coinjoin_lib = "1.0.0-beta"
+```
 
 ## Roadmap
 
