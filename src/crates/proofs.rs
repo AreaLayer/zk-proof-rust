@@ -13,7 +13,8 @@ pub (crate) fn Proofs() -> Vec<ZKProof> {
 pub struct CoinjoinProof {
     pub inputs: Vec<CommitmentInput>,
     pub outputs: Vec<CommitmentOutput>,
-    pub proof: ProofData,
+    pub proof: Vec<ProofData>,
+    pub public_inputs: Vec<u8>, 
 }
 
 #[derive(Serialize, Deserialize)]

@@ -17,6 +17,7 @@ pub (crate) fn circuit() -> Circuit<String> {
 pub struct CoinjoinCircuit {
     pub inputs: Vec<CommitmentInput>,
     pub outputs: Vec<CommitmentOutput>,
+    pub utxo: Vec<CommitmentInput>,
     pub randomness: [u8; 32],
 }
 
