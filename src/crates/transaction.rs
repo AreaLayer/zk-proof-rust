@@ -52,6 +52,36 @@ pub fn broadcast_transaction(transaction: &Transaction) {
     // For demonstration purposes, we'll just print the transaction.
     println!("Broadcasting transaction: {}", transaction.transaction);
 }
+// src/transactions.rs
+
+pub struct CoinjoinTransaction {
+    pub inputs: Vec<TransactionInput>,
+    pub outputs: Vec<TransactionOutput>,
+}
+
+impl CoinjoinTransaction {
+    pub fn new(inputs: Vec<TransactionInput>, outputs: Vec<TransactionOutput>) -> Self {
+        CoinjoinTransaction { inputs, outputs }
+    }
+
+    pub fn sign_transaction(&mut self, priv_keys: Vec<[u8; 32]>) {
+        // Sign transaction logic
+    }
+
+    pub fn serialize(&self) -> Vec<u8> {
+        // Serialize transaction into bytes
+    }
+}
+
+pub struct TransactionInput {
+    pub prevout: [u8; 32],   // Previous transaction output
+    pub script_sig: Vec<u8>, // Signature script
+}
+
+pub struct TransactionOutput {
+    pub value: u64,          // Amount in satoshis
+    pub script_pubkey: Vec<u8>, // Output script
+}
 
 #[cfg(test)]
 mod tests {

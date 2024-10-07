@@ -19,3 +19,14 @@ pub fn generate_nonce() -> Vec<u8> {
     let nonce: Vec<u8> = (0..32).map(|_| rng.gen()).collect(); // Generate 32 random bytes
     nonce
 }
+pub struct HashUtils;
+
+impl HashUtils {
+    pub fn hash_to_scalar(data: &[u8]) -> [u8; 32] {
+        // Hash to scalar logic
+    }
+
+    pub fn random_scalar() -> [u8; 32] {
+        // Generate a random scalar for zk proofs
+    }
+}

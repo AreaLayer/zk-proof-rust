@@ -13,6 +13,13 @@ pub (crate) fn circuit() -> Circuit<String> {
     // Create a new circuit
     let circuit = Circuit::new();
 }
+// Struct to hold the inputs and outputs of the circuit
+pub struct CoinjoinCircuit {
+    pub inputs: Vec<CommitmentInput>,
+    pub outputs: Vec<CommitmentOutput>,
+    pub randomness: [u8; 32],
+}
+
 // Main fucntion to create the ZK circuit
 pub fn create_circuit(public_key: PublicKey, secret_key: SecretKey, message: [u8; 32]) -> Circuit<String> {
     let circuit = KeyOwnershipCircuit {
@@ -42,6 +49,16 @@ impl<CS: ConstraintSystem<Scalar>, T> Circuit<String> for KeyOwnershipCircuit {
     }
 }
 }
+impl CoinjoinCircuit {
+    pub fn new(inputs: Vec<CommitmentInput>, outputs: Vec<CommitmentOutput>, randomness: [u8; 32]) -> Self {
+        CoinjoinCircuit { inputs, outputs, randomness }
+    }
+
+    pub fn generate_constraints(&self) {
+        // Constraint generation logic for zk-SNARK circuit
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

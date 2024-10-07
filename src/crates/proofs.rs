@@ -8,6 +8,14 @@ use serde::Serialize;
 pub (crate) fn Proofs() -> Vec<ZKProof> {
     vec![]
 }
+
+
+pub struct CoinjoinProof {
+    pub inputs: Vec<CommitmentInput>,
+    pub outputs: Vec<CommitmentOutput>,
+    pub proof: ProofData,
+}
+
 #[derive(Serialize, Deserialize)]
 pub struct ZKProof {
     proof: Proof<Eq::Engine>,
@@ -28,6 +36,30 @@ impl ZKProof {
     pub fn public_inputs(&self) -> &Vec<u8> {
         &self.public_inputs
     }
+}
+
+impl CoinjoinProof {
+    pub fn new(inputs: Vec<CommitmentInput>, outputs: Vec<CommitmentOutput>, proof: ProofData) -> Self {
+        CoinjoinProof { inputs, outputs, proof }
+    }
+
+    pub fn verify(&self) -> bool {
+        // zk-SNARK proof verification logic
+    }
+}
+
+// Proof Data
+pub struct CommitmentInput {
+    pub commitment: [u8; 32],
+    pub nullifier: [u8; 32],
+}
+
+pub struct CommitmentOutput {
+    pub commitment: [u8; 32],
+}
+
+pub struct ProofData {
+    pub proof: Vec<u8>,  // Serialized zk-SNARK proof data
 }
 
 #[cfg(test)]
