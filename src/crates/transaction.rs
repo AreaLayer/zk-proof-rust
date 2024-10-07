@@ -66,10 +66,18 @@ impl CoinjoinTransaction {
 
     pub fn sign_transaction(&mut self, priv_keys: Vec<[u8; 32]>) {
         // Sign transaction logic
+        let mut rng = OsRng;
+        for (i, input) in self.inputs.iter_mut().enumerate() {
+            let priv_key = priv_keys[i];
+            let signature = secp256k1::sign(&input.prevout, &priv_key, &secp256k1::Message::from_slice(&[]));
+            input.script_sig = signature.serialize_der();
+        }
     }
 
     pub fn serialize(&self) -> Vec<u8> {
         // Serialize transaction into bytes
+        let mut buf = Vec::new();
+        let bytes = self.bytes(32);
     }
 }
 

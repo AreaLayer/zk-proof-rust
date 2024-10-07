@@ -45,6 +45,11 @@ impl CoinjoinProof {
 
     pub fn verify(&self) -> bool {
         // zk-SNARK proof verification logic
+        let mut public_inputs = Vec::new();
+        for input in &self.inputs {
+            public_inputs.extend_from_slice(&input.commitment);
+            public_inputs.extend_from_slice(&input.nullifier);
+        }
     }
 }
 

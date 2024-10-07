@@ -24,9 +24,17 @@ pub struct HashUtils;
 impl HashUtils {
     pub fn hash_to_scalar(data: &[u8]) -> [u8; 32] {
         // Hash to scalar logic
+        let mut hasher = sha2::Sha256::new();
+        hasher.update(data);
+        let hash = hasher.finalize();
+        let mut scalar = [0u8; 32];
+        scalar.copy_from_slice(&hash);
     }
 
     pub fn random_scalar() -> [u8; 32] {
         // Generate a random scalar for zk proofs
+        let mut rng = rand::thread_rng();
+        let mut scalar = [0u8; 32];
+        rng.fill(&mut scalar);
     }
 }

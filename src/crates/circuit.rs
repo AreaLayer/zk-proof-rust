@@ -56,6 +56,11 @@ impl CoinjoinCircuit {
 
     pub fn generate_constraints(&self) {
         // Constraint generation logic for zk-SNARK circuit
+        let mut cs = ConstraintSystem::new();
+        let _ = cs.alloc_input(|| "public_key", &self.public_key);
+        let _ = cs.alloc_input(|| "secret_key", &self.secret_key);
+        let _ = cs.alloc_input(|| "message", &self.message);
+        let _ = cs.alloc_input(|| "private_key", &self.private_key);
     }
 }
 
