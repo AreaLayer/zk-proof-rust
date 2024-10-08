@@ -10,18 +10,7 @@ use bitcoin::secp256k1::Secp256k1;
 use bitcoin::Transaction;
 use reqwest::Client;
 
-/// Create a Coinjoin transaction using ZK proofs
-pub fn create_transaction(
-    is_taproot: bool,
-    recipient_address: &str,
-    amount: u64,
-) -> Result<Transaction, String> {
-    // For now, this just forwards to `build_transaction`.
-    // In practice, you'd have additional logic here for handling multiple participants in the Coinjoin.
-    build_transaction(is_taproot, recipient_address, amount)
-}
-
-/// Create and broadcast a Coinjoin transaction using Taproot or SegWit with ZK Proofs
+// / Create and broadcast a Coinjoin transaction using Taproot or SegWit with ZK Proofs
 pub fn create_and_broadcast_transaction(
     client: &Client,
     is_taproot: bool,
