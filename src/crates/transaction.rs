@@ -90,7 +90,31 @@ pub struct TransactionOutput {
     pub value: u64,          // Amount in satoshis
     pub script_pubkey: Vec<u8>, // Output script
 }
+pub struct UTXO {
+    pub txid: [u8; 32],      // Transaction ID from which this UTXO originates
+    pub vout: u32,           // The index of the output in the transaction
+    pub value: u64,          // Value of the UTXO in satoshis
+    pub script_pubkey: Vec<u8>, // Script associated with the UTXO (locking script)
+}
 
+pub struct CoinjoinTransaction {
+    pub inputs: Vec<UTXO>,   // UTXOs used as inputs in the Coinjoin
+    pub outputs: Vec<UTXO>,  // UTXOs created as outputs
+}
+
+impl CoinjoinTransaction {
+    pub fn new(inputs: Vec<UTXO>, outputs: Vec<UTXO>) -> Self {
+        CoinjoinTransaction { inputs, outputs }
+    }
+
+    pub fn sign(&mut self, priv_keys: Vec<[u8; 32]>) {
+        // Transaction signing logic for each UTXO
+    }
+
+    pub fn serialize(&self) -> Vec<u8> {
+        // Serialization logic for broadcasting
+    }
+}
 #[cfg(test)]
 mod tests {
     use super::*;
