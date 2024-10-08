@@ -109,10 +109,20 @@ impl CoinjoinTransaction {
 
     pub fn sign(&mut self, priv_keys: Vec<[u8; 32]>) {
         // Transaction signing logic for each UTXO
+        let UTXO = self.inputs[0];
+        let priv_key = priv_keys[0];
+        let signature = secp256k1::sign(&UTXO, &priv_key, &secp256k1::Message::from_slice(&[]));
+        UTXO.script_sig = signature.serialize_der();
+        self.inputs[0] = UTXO;
+        self.inputs[0].script_sig = signature.serialize_der();
     }
 
     pub fn serialize(&self) -> Vec<u8> {
         // Serialization logic for broadcasting
+        let mut buf = Vec::new();
+        let bytes = self.bytes(32);
+        buf.extend_from_slice(&bytes);
+        
     }
 }
 #[cfg(test)]
