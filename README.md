@@ -29,5 +29,5 @@ zk_coinjoin_lib = "1.0.0-beta"
 
 - [x] Add core logic
 - [x] Rust Bitcoin compatible
-- [ ] Crates
+- [x] Crates
 - [ ] Official Beta release in 2025

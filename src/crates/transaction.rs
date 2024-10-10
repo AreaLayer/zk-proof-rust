@@ -149,6 +149,8 @@ mod tests {
         let recipient_address = "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa";
         // Create an amount (in satoshis)
         let amount = 100000000;
+        // Create UTXO (for simplicity, we're using a dummy UTXO)
+        let utxo = UTXO::new();
         // Create a coinjoin transaction
         let transaction = create_coinjoin_transaction(
             &sender_address,
