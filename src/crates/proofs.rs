@@ -9,14 +9,44 @@ pub (crate) fn Proofs() -> Vec<ZKProof> {
     vec![]
 }
 
-
 pub struct CoinjoinProof {
-    pub inputs: Vec<CommitmentInput>,
-    pub outputs: Vec<CommitmentOutput>,
-    pub proof: Vec<ProofData>,
+    // Inputs that include Taproot keys and possibly pre-signed transactions
+    pub inputs: Vec<CommitmentInput>, 
+    
+    // Outputs with commitment to the new values and zk-proof validation
+    pub outputs: Vec<CommitmentOutput>, 
+    
+    // zk-SNARK proof data for verifying the confidentiality and integrity of the transaction
+    pub proof: Vec<ProofData>, 
+    
+    // Public inputs, such as the commitment to the transaction's total value
     pub public_inputs: Vec<u8>, 
+    
+    // Taproot-specific elements: leaf node structure and other related data
+    pub taproot_data: TaprootData, 
+    
+    // zk-Proof for Confidential Transactions, hiding amounts but proving validity
+    pub confidential_proof: ConfidentialProof,
 }
 
+pub struct TaprootData {
+    // Taproot internal structure: the Merkle tree root, leaf data, etc.
+    pub merkle_root: Vec<u8>, 
+    pub leaf_hash: Vec<u8>, 
+    pub internal_key: Vec<u8>, // internal Taproot key
+    pub script_path: Option<Vec<u8>>, // script path for the Taproot tree
+}
+
+pub struct ConfidentialProof {
+    // zk-SNARK proof for hiding amounts in the transaction
+    pub amount_proof: Vec<u8>, 
+    
+    // Commitment to the amounts and other transaction details
+    pub amount_commitment: Vec<u8>, 
+    
+    // Public elements that are used to verify the zk-proof
+    pub public_elements: Vec<u8>, 
+}
 #[derive(Serialize, Deserialize)]
 pub struct ZKProof {
     proof: Proof<Eq::Engine>,
