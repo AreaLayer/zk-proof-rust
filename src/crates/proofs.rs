@@ -35,6 +35,7 @@ pub struct TaprootData {
     pub leaf_hash: Vec<u8>, 
     pub internal_key: Vec<u8>, // internal Taproot key
     pub script_path: Option<Vec<u8>>, // script path for the Taproot tree
+    pub taproot_script: Vec<u8>, // script for the Taproot tree
 }
 
 pub struct ConfidentialProof {
