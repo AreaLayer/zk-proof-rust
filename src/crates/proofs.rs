@@ -38,6 +38,28 @@ pub struct TaprootData {
     pub taproot_script: Vec<u8>, // script for the Taproot tree
 }
 
+pub struct CommitmentInput {
+    // Commitment to the input value and other relevant data
+    pub commitment: Vec<u8>,
+
+    // zk-SNARK proof for the input value
+    pub input_proof: Vec<u8>,
+
+    // Public inputs for the zk-SNARK proof
+    pub public_inputs: Vec<u8>,
+}
+
+pub struct CommitmentOutput {
+    // Commitment to the output value and other relevant data
+    pub commitment: Vec<u8>,
+}
+
+pub struct SegwitData {
+    // Segwit-specific elements: the witness, script, etc.
+    pub witness: Vec<u8>,
+    pub script: Vec<u8>,
+}
+
 pub struct ConfidentialProof {
     // zk-SNARK proof for hiding amounts in the transaction
     pub amount_proof: Vec<u8>, 

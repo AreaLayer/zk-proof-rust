@@ -26,6 +26,21 @@ pub struct TaprootData {
     pub script_path: Option<Vec<u8>>,
 }
 
+pub struct SegwitData {
+    pub script_path: Vec<u8>,
+    pub witness: Vec<u8>,
+}
+pub struct CommitmentInput {
+    pub commitment: [u8; 32],
+    pub nullifier: [u8; 32],
+}
+
+pub struct CommitmentOutput {
+    pub commitment: [u8; 32],
+}
+pub struct ProofData {
+    pub proof: Vec<u8>,
+}
 pub struct ConfidentialProof {
     pub amount_proof: Vec<u8>,
     pub amount_commitment: Vec<u8>,
