@@ -10,7 +10,7 @@ license = "MIT"
 [dependencies]
 bellman = "0.14"
 rand = "0.8"     
-bitcoin = "0.32.4"
+bitcoin = "0.32.5"
 reqwest = "0.12.9"
 pairing = "0.23.0"
 serde =  { version = "1.0.215", features = ["derive"] }
