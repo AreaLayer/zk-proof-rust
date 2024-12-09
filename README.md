@@ -1,5 +1,7 @@
 # ZK Proof Rust 🌀
 
+**Beta software, use with caution for  production use.**
+
 ZK Proof Library for Coinjoin transactions
 
 ## About
@@ -30,8 +32,5 @@ zk_coinjoin_lib = "1.0.0-beta"
 
 ## Roadmap
 
-- [x] Add core logic
-- [x] Rust Bitcoin compatible
-- [x] Crates
 - [ ] Lightning compatible
 - [ ] Official Beta release in 2025
