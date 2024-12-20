@@ -1,6 +1,6 @@
 # ZK Proof Rust 🌀
 
-**Beta software, use with caution for  production use.**
+**Beta software, use with caution for  production**
 
 ZK Proof Library for Coinjoin transactions
 
