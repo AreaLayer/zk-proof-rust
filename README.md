@@ -34,4 +34,4 @@ zk_coinjoin_lib = "1.0.0-beta"
 
 - [ ] Lightning (LDK) compatible
 - [ ] Official Beta release in 2025
-- [ ] Tests and Electrum
+- [ ] Electrum
