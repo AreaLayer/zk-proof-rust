@@ -5,7 +5,6 @@ pub mod transaction;
 pub mod utils;
 pub mod circuit; 
 
-
 use bitcoin::secp256k1::Secp256k1;
 use reqwest::Client;
 
@@ -15,11 +14,17 @@ pub fn create_and_broadcast_transaction(
     is_taproot: bool,
     recipient_address: &str,
     amount: u64,
+    htlc: &str,
+    invoice: &str,
+    electrum_client: &str,
 ) -> Result<(), String> {
     let _ = is_taproot;
     let _ = client;
     let _ = recipient_address;
     let _ = amount;
+    let _ = invoice;
+    let _ = htlc;
+    let _ = electrum_client;
     let _secp = Secp256k1::new();
     
     Ok(())
