@@ -16,6 +16,8 @@ The **ZK Proof Coinjoin Library** is a Rust-based implementation designed to fac
 - **Rust Bitcoin Compatibility**: Integrate seamlessly with the Rust Bitcoin library, enabling seamless integration with the Bitcoin ecosystem.
 - **Transaction Validation**: Validate transactions to ensure they meet the necessary criteria for Coinjoin transactions.
 - **MPC Support**: Support for Multi-Party Computation (MPC) to enhance privacy and security in Coinjoin transactions.
+- **Lightning Network Integration**: Enable integration with the Lightning Network for enhanced privacy and scalability by LDK
+- **Electrum Client**: Integrate with Electrum client to enable secure and private transactions by BDK Electrum
 
 ### Use Cases
 
@@ -32,6 +34,4 @@ zk_coinjoin_lib = "1.0.0-beta"
 
 ## Roadmap
 
-- [ ] Lightning (LDK) compatible
 - [ ] Official Beta release in 2025
-- [ ] Electrum
