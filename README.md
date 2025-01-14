@@ -39,4 +39,4 @@ zk_coinjoin_lib = "1.0.0-beta"
 
 ## Roadmap
 
-- [ ] Official Beta release in 2025
+- [ ] Official Beta release in Q1 2025
