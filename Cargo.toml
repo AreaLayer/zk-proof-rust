@@ -1,10 +1,11 @@
 [package]
 name = "zk_coinjoin_lib"
-version = "1.0.0-beta"
+version = "1.0.1-beta"
 edition = "2021"
 description = "ZK Proof library for Coinjoin"
 homepage = "https://www.arealayer.net/projects"
 repository = "https://github.com/arealayer/zk_coinjoin_lib"
+documentation = "https://docs.rs/zk_coinjoin_lib"
 license = "MIT"
 
 [dependencies]
