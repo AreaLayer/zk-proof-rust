@@ -4,7 +4,7 @@ version = "1.0.1-beta"
 edition = "2021"
 description = "ZK Proof library for Coinjoin"
 homepage = "https://www.arealayer.net/projects"
-repository = "https://github.com/arealayer/zk_coinjoin_lib"
+repository = "https://github.com/AreaLayer/zk-proof-rust"
 documentation = "https://docs.rs/zk_coinjoin_lib"
 license = "MIT"
 
