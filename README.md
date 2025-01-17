@@ -39,4 +39,4 @@ zk_coinjoin_lib = "1.0.0-beta"
 
 ## Roadmap
 
-- [] Crates
+- [ ] Crates
