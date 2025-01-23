@@ -10,13 +10,37 @@ use reqwest::Client;
 
 // / Create and broadcast a Coinjoin transaction using Taproot or SegWit with ZK Proofs
 pub fn create_and_broadcast_transaction(
-    client: &Client,
-    is_taproot: bool,
-    recipient_address: &str,
-    amount: u64,
-    htlc: &str,
-    invoice: &str,
-    electrum_client: &str,
+    client: &Client, // Replace with your actual client
+    is_taproot: bool, // Use Taproot or SegWit
+    recipient_address: &str, // Replace with the recipient's address
+    amount: u64, // Amount to send
+    htlc: &str, // Replace with the HTLC
+    invoice: &str, // Replace with the invoice from Lightning Network
+    electrum_client: &str, // Replace with the Electrum client
+    hex: &str, // Replace with the hex
+
+) -> Result<(), String> {
+    let _ = is_taproot; 
+    let _ = client;
+    let _ = recipient_address;
+    let _ = amount;
+    let _ = invoice;
+    let _ = htlc;
+    let _ = electrum_client;
+    let _ = hex;
+    let _secp = Secp256k1::new();
+    
+    Ok(())
+}
+
+pub fn create_and_broadcast_transaction_with_zk(
+    client: &Client, // Replace with your actual client
+    is_taproot: bool, // Use Taproot or SegWit
+    recipient_address: &str, // Replace with the recipient's address
+    amount: u64, // Amount to send
+    invoice: &str, // Replace with the invoice from Lightning Network
+    htlc: &str, // Replace with the HTLC
+    electrum_client: &str, // Replace with the Electrum client
 ) -> Result<(), String> {
     let _ = is_taproot;
     let _ = client;
@@ -25,21 +49,6 @@ pub fn create_and_broadcast_transaction(
     let _ = invoice;
     let _ = htlc;
     let _ = electrum_client;
-    let _secp = Secp256k1::new();
-    
-    Ok(())
-}
-
-pub fn create_and_broadcast_transaction_with_zk(
-    client: &Client,
-    is_taproot: bool,
-    recipient_address: &str,
-    amount: u64,
-) -> Result<(), String> {
-    let _ = is_taproot;
-    let _ = client;
-    let _ = recipient_address;
-    let _ = amount;
     let _secp = Secp256k1::new();
 
     Ok(())
