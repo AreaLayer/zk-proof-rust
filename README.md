@@ -39,4 +39,6 @@ zk_coinjoin_lib = "1.0.1-beta"
 
 ## Roadmap
 
-- [x] Crates
+- [ ] Liquid
+- [ ] Fix bugs and issues
+
