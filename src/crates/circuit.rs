@@ -2,6 +2,7 @@ use crate::Proofs;
 use bellman::groth16::{create_random_proof, generate_parameters, prepare_verifying_key, verify_proof, Proof, VerifyingKey};
 use bellman::pairing::bn256::{Bn256, Fr};
 use serde::{Deserialize, Serialize};
+use public_elements::cofidental::Asset;
 use std::fs::File;
 use std::io::{self, BufReader, BufWriter, Write};
 use rand::thread_rng;
@@ -17,6 +18,8 @@ pub struct CoinjoinProof {
     pub public_inputs: Vec<u8>,
     pub taproot_data: TaprootData,
     pub confidential_proof: ConfidentialProof,
+    pub asset: Asset,
+
 }
 
 pub struct TaprootData {
