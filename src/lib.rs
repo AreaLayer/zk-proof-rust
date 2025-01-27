@@ -18,8 +18,12 @@ pub fn create_and_broadcast_transaction(
     invoice: &str, // Replace with the invoice from Lightning Network
     electrum_client: &str, // Replace with the Electrum client
     hex: &str, // Replace with the hex
+    asset_id: &str, // Replace to L-BTC
+    address: &str // Replace to Liquid address
 
 ) -> Result<(), String> {
+    let _ = address;
+    let _ = asset_id;
     let _ = is_taproot; 
     let _ = client;
     let _ = recipient_address;
