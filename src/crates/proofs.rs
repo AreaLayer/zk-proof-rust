@@ -4,6 +4,7 @@ use crate::Proofs;
 use bellman::groth16::Proof;
 use serde::Deserialize;
 use serde::Serialize;
+use elements::confidential::Asset;
 
 pub (crate) fn Proofs() -> Vec<ZKProof> {
     vec![]
@@ -27,6 +28,9 @@ pub struct CoinjoinProof {
     
     // zk-Proof for Confidential Transactions, hiding amounts but proving validity
     pub confidential_proof: ConfidentialProof,
+
+    // zk-Proof for Confidential Assets, hiding asset types and amounts
+    pub confidential_asset_proof: ConfidentialAssetProof,
 }
 
 pub struct TaprootData {
@@ -47,6 +51,7 @@ pub struct CommitmentInput {
 
     // Public inputs for the zk-SNARK proof
     pub public_inputs: Vec<u8>,
+
 }
 
 pub struct CommitmentOutput {

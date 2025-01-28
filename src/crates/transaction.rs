@@ -4,6 +4,8 @@ use crate::Transaction;
 use bitcoin::address::Address;
 use bitcoin::Network;
 use bitcoin::network::{Testnet, Signet, Mainnet};
+use elements::transaction::Transactionransaction as ElementsTransaction;
+use elements::network::{Testnet, Signet, Mainnet};
 
 pub (crate) fn  transaction() -> Transaction {
     // Create a new transaction
@@ -15,6 +17,7 @@ pub fn create_coinjoin_transaction(
     _recipient_address: &str,
     _amount: u64,
     _network: Network,
+    _element_transaction: &ElementsTransaction,
     _zk_proof: &super::proofs::ZKProof,
 ) -> bitcoin::Transaction {
     // Build a Bitcoin transaction here (you'll need to craft inputs, outputs)
