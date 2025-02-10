@@ -40,6 +40,6 @@ zk_coinjoin_lib = "1.0.2-beta"
 
 ## Roadmap
 
-- [x] Liquid (WIP)
+
 - [ ] Fix bugs and issues
 
