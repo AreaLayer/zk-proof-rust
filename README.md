@@ -23,7 +23,7 @@ The **ZK Proof Coinjoin Library** is a Rust-based implementation designed to fac
 - **MPC Support**: Support for Multi-Party Computation (MPC) to enhance privacy and security in Coinjoin transactions.
 - **Lightning Network Integration**: Enable integration with the Lightning Network for enhanced privacy and scalability by LDK
 - **Electrum Client**: Integrate with Electrum client to enable secure and private transactions by BDK Electrum
-- **Liquid Network**: Integrate with Liquid Network and L-BTC asset
+- **Liquid Network**: Integrate with Liquid Network and L-BTC asset by Rust Elements
 
 ### Use Cases
 
