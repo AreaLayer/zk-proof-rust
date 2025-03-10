@@ -7,7 +7,7 @@
 
 **Beta software, use with caution for  production**
 
-ZK Proof Library for Coinjoin transactions
+>ZK Proof Library for Coinjoin transactions
 
 ## About
 
