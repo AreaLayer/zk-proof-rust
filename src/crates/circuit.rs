@@ -50,6 +50,13 @@ pub struct ConfidentialProof {
     pub public_elements: Vec<u8>,
 }
 
+pub struct Pool {
+    pub amount_proof: Vec<u8>,
+    pub amount_commitment: Vec<u8>,
+    pub public_elements: Vec<u8>,
+    pub amount_pool: Vec<u8>
+
+}
 #[derive(Serialize, Deserialize)]
 pub struct ZKProof {
     proof: Proof<Bn256>,
@@ -67,7 +74,6 @@ impl ZKProof {
         &self.public_inputs
     }
 }
-
 // MPC Ceremony functions
 pub struct MPC {
     pub params: VerifyingKey<Bn256>,

@@ -17,6 +17,8 @@ pub fn create_coinjoin_transaction(
     _recipient_address: &str,
     _amount: u64,
     _network: Network,
+    amount_pool: u64,
+    
     _element_transaction: &ElementsTransaction,
     _zk_proof: &super::proofs::ZKProof,
 ) -> bitcoin::Transaction {
