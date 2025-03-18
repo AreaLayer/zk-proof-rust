@@ -19,7 +19,8 @@ pub fn create_and_broadcast_transaction(
     electrum_client: &str, // Replace with the Electrum client
     hex: &str, // Replace with the hex
     asset_id: &str, // Replace to L-BTC
-    address: &str // Replace to Liquid address
+    address: &str, // Replace to Liquid address
+    pool: &str // Replace to pool address
 
 ) -> Result<(), String> {
     let _ = address;
@@ -32,6 +33,7 @@ pub fn create_and_broadcast_transaction(
     let _ = htlc;
     let _ = electrum_client;
     let _ = hex;
+    let _ = pool;
     let _secp = Secp256k1::new();
     
     Ok(())
