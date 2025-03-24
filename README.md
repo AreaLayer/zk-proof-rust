@@ -40,6 +40,6 @@ zk_coinjoin_lib = "1.0.2-beta"
 
 ## Roadmap
 
-- [ ] Fix bugs and issues
-- [ ] Pool
+- [x] Fix bugs and issues
+- [x] Pool
 
