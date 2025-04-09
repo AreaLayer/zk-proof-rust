@@ -24,6 +24,7 @@ The **ZK Proof Coinjoin Library** is a Rust-based implementation designed to fac
 - **Lightning Network Integration**: Enable integration with the Lightning Network for enhanced privacy and scalability by LDK
 - **Electrum Client**: Integrate with Electrum client to enable secure and private transactions by BDK Electrum
 - **Liquid Network**: Integrate with Liquid Network and L-BTC asset by Rust Elements
+- **Pool**: Integrate pool dominance and facilite coinjoin mixer
 
 ### Use Cases
 
@@ -37,9 +38,3 @@ To start using the ZK Proof SDK, add it to your Cargo.toml:
 [dependencies]
 zk_coinjoin_lib = "1.0.2-beta"
 ```
-
-## Roadmap
-
-- [x] Fix bugs and issues
-- [x] Pool
-
