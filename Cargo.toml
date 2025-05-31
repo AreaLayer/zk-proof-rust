@@ -23,4 +23,5 @@ lightning = "=0.1.4"
 elements = "0.25.1"
 
 [lib]
+name = "zk_coinjoin_lib"
 path = "src/lib.rs"
