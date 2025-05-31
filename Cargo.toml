@@ -21,3 +21,6 @@ idna = "1.0.0"
 bdk_electrum = "0.23.0"
 lightning = "=0.1.4"
 elements = "0.25.1"
+
+[lib]
+path = "src/lib.rs"
