@@ -1,6 +1,6 @@
 [package]
 name = "zk_coinjoin_lib"
-version = "1.0.4-beta"
+version = "1.0.5-beta"
 edition = "2021"
 description = "ZK Proof library for Coinjoin"
 homepage = "https://www.arealayer.net/projects"
@@ -25,10 +25,6 @@ elements = "0.25.1"
 [lib]
 name = "zk_coinjoin_lib"
 path = "src/lib.rs"
-
-[[bin]]
-name = "zk_cli"
-path = "src/bin/zk_cli.rs"
 
 [features]
 default = []
