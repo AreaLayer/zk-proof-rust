@@ -36,5 +36,5 @@ To start using the ZK Proof SDK, add it to your Cargo.toml:
 
 ```Cargo.toml
 [dependencies]
-zk_coinjoin_lib = "1.0.3-beta"
+zk_coinjoin_lib = "1.0.5-beta"
 ```
