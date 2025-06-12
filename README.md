@@ -25,7 +25,7 @@ The **ZK Proof Coinjoin Library** is a Rust-based implementation designed to fac
 - **Electrum Client**: Integrate with Electrum client to enable secure and private transactions by BDK Electrum
 - **Liquid Network**: Integrate with Liquid Network and L-BTC asset by Rust Elements
 - **Pool**: Integrate pool dominance and facilite coinjoin mixer
-- **CLI**: Run your own coinjoin local pool and make mixers (soon)
+- **CLI**: Run your own coinjoin local pool and make mixers 
 
 ### Use Cases
 
