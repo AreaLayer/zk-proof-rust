@@ -6,6 +6,7 @@ pub mod utils;
 pub mod circuit; 
 pub mod cli;
 
+
 use bitcoin::secp256k1::Secp256k1;
 use reqwest::Client;
 
