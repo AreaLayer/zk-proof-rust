@@ -41,4 +41,4 @@ zk_coinjoin_lib = "1.0.5-beta"
 ```
 ## Roadmap 
 
-- [ ] ZK Proof CLI
+- [x] ZK Proof CLI
