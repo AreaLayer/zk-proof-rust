@@ -26,10 +26,6 @@ elements = "0.25.1"
 name = "zk_coinjoin_lib"
 path = "src/lib.rs"
 
-[[bin]]
-name = "zk-cli"
-path = "src/main.rs"
-
 [features]
 default = []
 cli = []
