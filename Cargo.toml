@@ -20,7 +20,7 @@ rustls = "0.23.20"
 idna = "1.0.0"
 bdk_electrum = "0.23.0"
 lightning = "=0.1.5"
-elements = "0.25.1"
+elements = "0.26.0"
 
 [lib]
 name = "zk_coinjoin_lib"
